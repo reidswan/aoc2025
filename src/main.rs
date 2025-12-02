@@ -1,5 +1,29 @@
-mod day1;
+use std::{env::args, time::Instant};
+
+mod day01;
+mod day02;
+
+fn run_day(n: usize) {
+    println!("Day {}", n);
+    let start = Instant::now();
+
+    match n {
+        1 => day01::solve(),
+        2 => day02::solve(),
+        _ => panic!("Not yet implemented: day {}", n),
+    }
+
+    let duration = Instant::now() - start;
+    println!("Took {}ms", duration.as_millis());
+}
+
+const LATEST_DAY: usize = 25;
 
 fn main() {
-    day1::solve();
+    run_day(
+        args()
+            .nth(1)
+            .and_then(|s| s.parse::<usize>().ok())
+            .unwrap_or(LATEST_DAY),
+    );
 }
