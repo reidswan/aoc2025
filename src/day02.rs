@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::BTreeSet;
 
 const RAW_INPUT: &'static str = include_str!("inputs/day02.txt");
 
@@ -20,7 +20,7 @@ fn count_digits(i: usize) -> u32 {
 
 fn find_bad_ids(start: usize, end: usize) -> usize {
     let start_len = u32::max(count_digits(start) / 2, 1);
-    let end_len = count_digits(end) / 2 + 1;
+    let end_len = count_digits(end) / 2;
     let mut sum = 0;
 
     for len in start_len..=end_len {
@@ -46,8 +46,8 @@ fn part1(input: &[(usize, usize)]) -> usize {
 
 fn find_bad_ids_p2(start: usize, end: usize) -> usize {
     let start_len = 1;
-    let end_len = count_digits(end) / 2 + 1;
-    let mut found = HashSet::new();
+    let end_len = count_digits(end) / 2;
+    let mut found = BTreeSet::new();
 
     for len in start_len..=end_len {
         let rng_start = 10usize.pow(len - 1);

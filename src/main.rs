@@ -2,6 +2,7 @@ use std::{env::args, time::Instant};
 
 mod day01;
 mod day02;
+mod day03;
 
 fn run_day(n: usize) {
     println!("Day {}", n);
@@ -10,6 +11,7 @@ fn run_day(n: usize) {
     match n {
         1 => day01::solve(),
         2 => day02::solve(),
+        3 => day03::solve(),
         _ => panic!("Not yet implemented: day {}", n),
     }
 
