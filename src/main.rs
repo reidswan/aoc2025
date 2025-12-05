@@ -3,6 +3,8 @@ use std::{env::args, time::Instant};
 mod day01;
 mod day02;
 mod day03;
+mod day04;
+mod day05;
 
 fn run_day(n: usize) {
     println!("Day {}", n);
@@ -12,6 +14,8 @@ fn run_day(n: usize) {
         1 => day01::solve(),
         2 => day02::solve(),
         3 => day03::solve(),
+        4 => day04::solve(),
+        5 => day05::solve(),
         _ => panic!("Not yet implemented: day {}", n),
     }
 
@@ -19,7 +23,7 @@ fn run_day(n: usize) {
     println!("Took {}ms", duration.as_millis());
 }
 
-const LATEST_DAY: usize = 25;
+const LATEST_DAY: usize = 5;
 
 fn main() {
     run_day(

@@ -1,18 +1,22 @@
 const RAW_INPUT: &'static str = include_str!("inputs/day03.txt");
 
-fn parse_input(input: &str) -> Vec<Vec<u32>> {
+fn parse_input(input: &str) -> Vec<Vec<u8>> {
     input
         .lines()
         .filter(|line| line.len() > 0)
-        .map(|line| line.chars().filter_map(|c| c.to_digit(10)).collect())
+        .map(|line| {
+            line.chars()
+                .filter_map(|c| c.to_digit(10).map(|it| it as u8))
+                .collect()
+        })
         .collect()
 }
 
-fn highest_joltage(bank: &Vec<u32>, n_digits: usize) -> usize {
+fn highest_joltage(bank: &Vec<u8>, n_digits: usize) -> usize {
     // Construct a number by always taking the highest remaining digit,
     // while ensuring that there are at least as many digits left over
     // as there are remaining spots in the number we are constructing
-    let mut maxs = Vec::with_capacity(n_digits);
+    let mut joltage = 0;
     let mut curr_max_i = 0;
     let mut curr_max;
     for digit in 0..n_digits {
@@ -23,18 +27,18 @@ fn highest_joltage(bank: &Vec<u32>, n_digits: usize) -> usize {
                 curr_max_i = i
             }
         }
-        maxs.push(curr_max);
+        joltage = joltage * 10 + curr_max as usize;
         curr_max_i += 1;
     }
 
-    maxs.iter().fold(0, |acc, &elm| acc * 10 + elm as usize)
+    joltage
 }
 
-fn part1(banks: &Vec<Vec<u32>>) -> usize {
+fn part1(banks: &Vec<Vec<u8>>) -> usize {
     banks.iter().map(|bank| highest_joltage(bank, 2)).sum()
 }
 
-fn part2(banks: &Vec<Vec<u32>>) -> usize {
+fn part2(banks: &Vec<Vec<u8>>) -> usize {
     banks.iter().map(|bank| highest_joltage(bank, 12)).sum()
 }
 
