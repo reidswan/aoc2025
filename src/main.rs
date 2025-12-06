@@ -5,6 +5,7 @@ mod day02;
 mod day03;
 mod day04;
 mod day05;
+mod day06;
 
 fn run_day(n: usize) {
     println!("Day {}", n);
@@ -16,6 +17,7 @@ fn run_day(n: usize) {
         3 => day03::solve(),
         4 => day04::solve(),
         5 => day05::solve(),
+        6 => day06::solve(),
         _ => panic!("Not yet implemented: day {}", n),
     }
 
@@ -23,7 +25,7 @@ fn run_day(n: usize) {
     println!("Took {}ms", duration.as_millis());
 }
 
-const LATEST_DAY: usize = 5;
+const LATEST_DAY: usize = 6;
 
 fn main() {
     run_day(
